@@ -343,10 +343,8 @@ def parse_val(check):
     """
     val = eval(check)
     if type(val) is str:
-        idx = val.find('"')
-        if idx != -1 and val[idx - 1] != '\\':
-            return None
-        val = val.replace('_', ' ')
+
+        val = val.replace('_', ' ').replace('\"', '')
         return val
     elif type(val) is float or type(val) is int:
         return val
