@@ -3,7 +3,7 @@
 from models.base_model import BaseModel
 
 
-class Review(BaseModel, Base):
+class Review(BaseModel):
     """ Review classto store review information """
     __tablename__ = 'reviews'
     

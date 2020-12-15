@@ -3,7 +3,7 @@
 from models.base_model import BaseModel  # Verificar importacion por Base
 
 
-class State(BaseModel, Base):
+class State(BaseModel):
     """ State class """
     __tablename__ = 'states'
 

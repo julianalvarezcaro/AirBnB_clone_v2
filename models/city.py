@@ -3,7 +3,7 @@
 from models.base_model import BaseModel  # Verificar importacion por Base
 
 
-class City(BaseModel, Base):
+class City(BaseModel):
     """ The city class, contains state ID and name """
     __tablename__ = 'cities'
 
