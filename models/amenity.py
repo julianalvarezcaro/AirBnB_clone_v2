@@ -3,5 +3,11 @@
 from models.base_model import BaseModel
 
 
-class Amenity(BaseModel):
+class Amenity(BaseModel, Base):
+    """Comment"""
+    __tablename__ = 'users'
+
+    # Volver columnas 
     name = ""
+
+    # Crear relacion Many-to-Many place_amenities
