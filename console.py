@@ -33,7 +33,7 @@ class HBNBCommand(cmd.Cmd):
     def preloop(self):
         """Prints if isatty is false"""
         if not sys.__stdin__.isatty():
-            print('(hbnb)')
+            print('(hbnb) ', end='')
 
     def precmd(self, line):
         """Reformat command line for advanced command syntax.
@@ -73,7 +73,7 @@ class HBNBCommand(cmd.Cmd):
                 pline = pline[2].strip()  # pline is now str
                 if pline:
                     # check for *args or **kwargs
-                    if pline[0] is '{' and pline[-1] is'}'\
+                    if pline[0] is '{' and pline[-1] is '}'\
                             and type(eval(pline)) is dict:
                         _args = pline
                     else:
@@ -118,13 +118,30 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             print("** class name missing **")
             return
-        elif args not in HBNBCommand.classes:
+        args_l = args.split()
+        clss = args_l[0]
+        del args_l[0]
+        if clss not in HBNBCommand.classes:
             print("** class doesn't exist **")
             return
-        new_instance = HBNBCommand.classes[args]()
-        storage.save()
+
+        # We receive the parameters like: <key name>=<value>
+        # So we split it set up a dictionary that is going to contain
+        # all valid parameters to be set up as attributes of the new object
+        new_attr = {}
+        for arg in args_l:
+            param = arg.split('=')
+            if len(param) != 2:
+                continue
+            val = parse_val(param[1])
+            if val:
+                new_attr[param[0]] = val
+
+        new_instance = HBNBCommand.classes[clss]()
+        for key, val in new_attr.items():
+            setattr(new_instance, key, val)
+        new_instance.save()
         print(new_instance.id)
-        storage.save()
 
     def help_create(self):
         """ Help information for the create method """
@@ -319,6 +336,24 @@ class HBNBCommand(cmd.Cmd):
         """ Help information for the update class """
         print("Updates an object with new information")
         print("Usage: update <className> <id> <attName> <attVal>\n")
+
+
+def parse_val(check):
+    val = eval(check)
+    if type(val) is str:
+        idx = val.find('"')
+        if idx != -1 and val[idx - 1] != '\\':
+            return None
+        idx = val.find(' ')
+        if idx != -1:
+            return None
+        val = val.replace('_', ' ')
+        return val
+    elif type(val) is float or type(val) is int:
+        return val
+    else:
+        return None
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
