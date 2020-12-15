@@ -3,8 +3,11 @@
 from models.base_model import BaseModel
 
 
-class Place(BaseModel):
+class Place(BaseModel, Base):
     """ A place to stay """
+    __tablename__ = 'places'
+
+    # Volver columnas
     city_id = ""
     user_id = ""
     name = ""
@@ -16,3 +19,8 @@ class Place(BaseModel):
     latitude = 0.0
     longitude = 0.0
     amenity_ids = []
+
+    # Crear relacion con Review
+    # Instance of SQLAlchemy Table called place_amenity
+
+    # Condicional entre DBStorage y FileStorage
