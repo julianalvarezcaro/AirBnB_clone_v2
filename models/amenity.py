@@ -7,7 +7,7 @@ class Amenity(BaseModel):
     """Comment"""
     __tablename__ = 'users'
 
-    # Volver columnas 
+    # Volver columnas
     name = ""
 
     # Crear relacion Many-to-Many place_amenities
