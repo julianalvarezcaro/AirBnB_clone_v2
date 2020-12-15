@@ -339,6 +339,8 @@ class HBNBCommand(cmd.Cmd):
 
 
 def parse_val(check):
+    """Fixes the entry to be added to the attribute of the obj
+    """
     val = eval(check)
     if type(val) is str:
         idx = val.find('"')
