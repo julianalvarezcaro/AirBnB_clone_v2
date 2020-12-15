@@ -346,9 +346,6 @@ def parse_val(check):
         idx = val.find('"')
         if idx != -1 and val[idx - 1] != '\\':
             return None
-        idx = val.find(' ')
-        if idx != -1:
-            return None
         val = val.replace('_', ' ')
         return val
     elif type(val) is float or type(val) is int:
