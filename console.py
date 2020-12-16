@@ -129,7 +129,7 @@ class HBNBCommand(cmd.Cmd):
         # We receive the parameters like: <key name>=<value>
         # So we split it set up a dictionary that is going to contain
         # all valid parameters to be set up as attributes of the new object
-        for arg in args_l:
+        for arg in args_l[1:]:
             param = arg.split('=')
             key = param[0]
             val = param[1]
