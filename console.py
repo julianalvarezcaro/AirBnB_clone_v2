@@ -125,21 +125,26 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
             return
 
+        new_instance = HBNBCommand.classes[clss]()
         # We receive the parameters like: <key name>=<value>
         # So we split it set up a dictionary that is going to contain
         # all valid parameters to be set up as attributes of the new object
-        new_attr = {}
         for arg in args_l:
             param = arg.split('=')
+            key = param[0]
+            val = param[1]
             if len(param) != 2:
                 continue
-            val = parse_val(param[1])
-            if val:
-                new_attr[param[0]] = val
 
-        new_instance = HBNBCommand.classes[clss]()
-        for key, val in new_attr.items():
+            if val[0] == '\"':
+                val = val.replace('\"', '').replace('_', ' ')
+            if '.' in val:
+                val = float(val)
+            elif val.isdigit():
+                val = int(val)
+
             setattr(new_instance, key, val)
+
         new_instance.save()
         print(new_instance.id)
 
@@ -336,19 +341,6 @@ class HBNBCommand(cmd.Cmd):
         """ Help information for the update class """
         print("Updates an object with new information")
         print("Usage: update <className> <id> <attName> <attVal>\n")
-
-
-def parse_val(check):
-    """Fixes the entry to be added to the attribute of the obj
-    """
-    if check[0] == '\"':
-        val = check.replace('_', ' ').replace('\"', '')
-        return val
-    val = eval(check)
-    if type(val) is float or type(val) is int:
-        return val
-    else:
-        return None
 
 
 if __name__ == "__main__":
