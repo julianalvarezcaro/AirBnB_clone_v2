@@ -120,7 +120,6 @@ class HBNBCommand(cmd.Cmd):
             return
         args_l = args.split()
         clss = args_l[0]
-        del args_l[0]
         if clss not in HBNBCommand.classes:
             print("** class doesn't exist **")
             return
@@ -133,14 +132,12 @@ class HBNBCommand(cmd.Cmd):
             param = arg.split('=')
             key = param[0]
             val = param[1]
-            if len(param) != 2:
-                continue
 
             if val[0] == '\"':
                 val = val.replace('\"', '').replace('_', ' ')
-            if '.' in val:
+            elif '.' in val:
                 val = float(val)
-            elif val.isdigit():
+            else:
                 val = int(val)
 
             setattr(new_instance, key, val)
