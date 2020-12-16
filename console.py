@@ -341,12 +341,11 @@ class HBNBCommand(cmd.Cmd):
 def parse_val(check):
     """Fixes the entry to be added to the attribute of the obj
     """
-    val = eval(check)
-    if type(val) is str:
-
-        val = val.replace('_', ' ').replace('\"', '')
+    if check[0] == '\"':
+        val = check.replace('_', ' ').replace('\"', '')
         return val
-    elif type(val) is float or type(val) is int:
+    val = eval(check)
+    if type(val) is float or type(val) is int:
         return val
     else:
         return None
