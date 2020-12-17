@@ -28,4 +28,4 @@ class State(BaseModel, Base):
             for city_id, obj in cities_dict.items():
                 if self.id == obj.state_id:
                     _cities_list.append(obj)
-            return cities_list
+            return _cities_list
