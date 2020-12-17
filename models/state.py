@@ -7,6 +7,7 @@ from sqlalchemy.orm import relationship
 import os
 import models
 
+
 class State(BaseModel, Base):
     """ State class """
     __tablename__ = 'states'
@@ -23,7 +24,7 @@ class State(BaseModel, Base):
         @property
         def cities(self):
             _cities_list = []
-            cities_dict = models.storage.all(City):
+            cities_dict = models.storage.all(City)
             for city_id, obj in cities_dict.items():
                 if self.id == obj.state_id:
                     _cities_list.append(obj)
