@@ -40,7 +40,7 @@ class DBStorage:
             quer = self.__session.query(eval(cls)).all()
             query_sum.extend(quer)
         else:
-            classes = ['State', 'City']
+            classes = ['State', 'City', 'User', 'Place', 'Review']
             for clas in classes:
                 quer = self.__session.query(eval(clas)).all()
                 query_sum.extend(quer)
