@@ -3,26 +3,29 @@
 import unittest
 import pep8
 from models.base_model import BaseModel
+from models import storage
 import os
 from os import getenv
 
 
+@unittest.skipIf(os.getenv("HBNB_TYPE_STORAGE") != "db",
+                 "Skipped because of type of storage")
 class test_dbStorage(unittest.TestCase):
     """ Class to test the db storage method """
 
-    def test_doc(self):
-        """
-        Tests if everything is documented
-        """
-        #  Module check
-        self.assertIsNotNone(console.__doc__)
+    # def test_doc(self):
+    #     """
+    #     Tests if everything is documented
+    #     """
+    #     #  Module check
+    #     self.assertIsNotNone(console.__doc__)
 
-        #  Class check
-        self.assertIsNotNone(HBNBCommand.__doc__)
+    #     #  Class check
+    #     self.assertIsNotNone(HBNBCommand.__doc__)
 
-        # Methods check
-        for method in dir(HBNBCommand):
-            self.assertIsNotNone(method.__doc__)
+    #     # Methods check
+    #     for method in dir(HBNBCommand):
+    #         self.assertIsNotNone(method.__doc__)
 
     def test_pep8(self):
         """ Style pep8 """

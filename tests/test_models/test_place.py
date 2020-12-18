@@ -16,19 +16,19 @@ class test_Place(test_basemodel):
         self.name = "Place"
         self.value = Place
 
-    def test_doc(self):
-        """
-        Tests if everything is documented
-        """
-        #  Module check
-        self.assertIsNotNone(console.__doc__)
+    # def test_doc(self):
+    #     """
+    #     Tests if everything is documented
+    #     """
+    #     #  Module check
+    #     self.assertIsNotNone(console.__doc__)
 
-        #  Class check
-        self.assertIsNotNone(HBNBCommand.__doc__)
+    #     #  Class check
+    #     self.assertIsNotNone(HBNBCommand.__doc__)
 
-        # Methods check
-        for method in dir(HBNBCommand):
-            self.assertIsNotNone(method.__doc__)
+    #     # Methods check
+    #     for method in dir(HBNBCommand):
+    #         self.assertIsNotNone(method.__doc__)
 
     def test_pep8(self):
         """ Style pep8 """
