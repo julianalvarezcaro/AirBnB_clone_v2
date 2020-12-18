@@ -21,13 +21,13 @@ class TestConsole(unittest.TestCase):
     Unittesting class
     """
 
-    # def setUp(self):
-    # """ preparing the test """
-    # self.consol = HBNBCommand()
+    def setUp(self):
+        """ preparing the test """
+        self.consol = HBNBCommand()
 
-    # def tearDown(self):
-    # """ after the setUp the test case is cleaned """
-    # pass
+    def tearDown(self):
+        """ after the setUp the test case is cleaned """
+        pass
 
     def test_doc(self):
         """

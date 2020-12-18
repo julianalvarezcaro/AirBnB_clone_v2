@@ -17,6 +17,30 @@ class test_basemodel(unittest.TestCase):
         self.name = 'BaseModel'
         self.value = BaseModel
 
+    def test_doc(self):
+        """
+        Tests if everything is documented
+        """
+        #  Module check
+        self.assertIsNotNone(console.__doc__)
+
+        #  Class check
+        self.assertIsNotNone(HBNBCommand.__doc__)
+
+        # Methods check
+        for method in dir(HBNBCommand):
+            self.assertIsNotNone(method.__doc__)
+
+    def test_pep8(self):
+        """ Style pep8 """
+        style = pep8.StyleGuide(quiet=True)
+        f1 = 'base_model.py'
+        # f2 = 'tests/test_console.py'
+        # result = style.check_files([f1, f2])
+        result = style.check_files([f1])
+        self.assertEqual(result.total_errors, 0, "fix pep8")
+        # self.assertEqual(True,True)
+
     def setUp(self):
         """ """
         pass
@@ -97,3 +121,7 @@ class test_basemodel(unittest.TestCase):
         n = new.to_dict()
         new = BaseModel(**n)
         self.assertFalse(new.created_at == new.updated_at)
+
+
+if __name__ == '__main__':
+    unittest.main()

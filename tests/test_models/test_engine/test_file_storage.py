@@ -24,6 +24,30 @@ class test_fileStorage(unittest.TestCase):
         except:
             pass
 
+    def test_doc(self):
+        """
+        Tests if everything is documented
+        """
+        #  Module check
+        self.assertIsNotNone(console.__doc__)
+
+        #  Class check
+        self.assertIsNotNone(HBNBCommand.__doc__)
+
+        # Methods check
+        for method in dir(HBNBCommand):
+            self.assertIsNotNone(method.__doc__)
+
+    def test_pep8(self):
+        """ Style pep8 """
+        style = pep8.StyleGuide(quiet=True)
+        f1 = 'file_storage.py'
+        # f2 = 'tests/test_console.py'
+        # result = style.check_files([f1, f2])
+        result = style.check_files([f1])
+        self.assertEqual(result.total_errors, 0, "fix pep8")
+        # self.assertEqual(True,True)
+
     def test_obj_list_empty(self):
         """ __objects is initially empty """
         self.assertEqual(len(storage.all()), 0)
@@ -107,3 +131,7 @@ class test_fileStorage(unittest.TestCase):
         from models.engine.file_storage import FileStorage
         print(type(storage))
         self.assertEqual(type(storage), FileStorage)
+
+
+if __name__ == '__main__':
+    unittest.main()

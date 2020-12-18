@@ -1,18 +1,13 @@
 #!/usr/bin/python3
-""" """
+""" Module for testing db_storage"""
 import unittest
-from tests.test_models.test_base_model import test_basemodel
-from models.amenity import Amenity
+from models.base_model import BaseModel
+import os
+from os import getenv
 
 
-class test_Amenity(test_basemodel):
-    """ """
-
-    def __init__(self, *args, **kwargs):
-        """ """
-        super().__init__(*args, **kwargs)
-        self.name = "Amenity"
-        self.value = Amenity
+class test_dbStorage(unittest.TestCase):
+    """ Class to test the db storage method """
 
     def test_doc(self):
         """
@@ -31,17 +26,18 @@ class test_Amenity(test_basemodel):
     def test_pep8(self):
         """ Style pep8 """
         style = pep8.StyleGuide(quiet=True)
-        f1 = 'amenity.py'
+        f1 = 'db_storage.py'
         # f2 = 'tests/test_console.py'
         # result = style.check_files([f1, f2])
         result = style.check_files([f1])
         self.assertEqual(result.total_errors, 0, "fix pep8")
         # self.assertEqual(True,True)
 
-    def test_name2(self):
-        """ """
-        new = self.value()
-        self.assertEqual(type(new.name), str)
+    def test_all(self):
+        """ __objects is properly returned """
+        new = BaseModel()
+        temp = storage.all()
+        self.assertIsInstance(temp, dict)
 
 
 if __name__ == '__main__':
