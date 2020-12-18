@@ -4,6 +4,7 @@ import unittest
 from models.base_model import BaseModel
 from models import storage
 import os
+import pep8
 
 
 class test_fileStorage(unittest.TestCase):
@@ -41,10 +42,10 @@ class test_fileStorage(unittest.TestCase):
     def test_pep8(self):
         """ Style pep8 """
         style = pep8.StyleGuide(quiet=True)
-        f1 = 'file_storage.py'
+        # f1 = 'file_storage.py'
         # f2 = 'tests/test_console.py'
         # result = style.check_files([f1, f2])
-        result = style.check_files([f1])
+        result = style.check_files(['models/engine/file_storage.py'])
         self.assertEqual(result.total_errors, 0, "fix pep8")
         # self.assertEqual(True,True)
 

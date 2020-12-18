@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ Module for testing db_storage"""
 import unittest
+import pep8
 from models.base_model import BaseModel
 import os
 from os import getenv
@@ -26,10 +27,10 @@ class test_dbStorage(unittest.TestCase):
     def test_pep8(self):
         """ Style pep8 """
         style = pep8.StyleGuide(quiet=True)
-        f1 = 'db_storage.py'
+        # f1 = 'db_storage.py'
         # f2 = 'tests/test_console.py'
         # result = style.check_files([f1, f2])
-        result = style.check_files([f1])
+        result = style.check_files(['models/engine/db_storage.py'])
         self.assertEqual(result.total_errors, 0, "fix pep8")
         # self.assertEqual(True,True)
 
