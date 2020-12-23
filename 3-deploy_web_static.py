@@ -21,9 +21,11 @@ def do_pack():
     local("mkdir -p versions")
     status = local("tar -czvf versions/{} web_static/".format(file_name))
 
-    if status == 0:
+    if status.succeeded:
+        print("Exit with 0")
         return "versions/{}".format(file_name)
     else:
+        print("Returning None")
         return None
 
 
@@ -37,7 +39,9 @@ def do_deploy(archive_path):
     try:
         file_nametgz = archive_path.split("/")[-1]
         file_name = file_nametgz.split(".")[0]
+        print("Bef: {}".format(archive_path))
         put(archive_path, "/tmp/{}".format(file_nametgz))
+        print("After")
         run("mkdir -p /data/web_static/releases/{}/".format(file_name))
         run("tar -xzf /tmp/{} -C\
             /data/web_static/releases/{}/".format(file_nametgz, file_name))
