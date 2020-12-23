@@ -18,9 +18,7 @@ def do_deploy(archive_path):
     try:
         file_nametgz = archive_path.split("/")[-1]
         file_name = file_nametgz.split(".")[0]
-        print("Before")
         put(archive_path, "/tmp/{}".format(file_nametgz))
-        print("After")
         run("mkdir -p /data/web_static/releases/{}/".format(file_name))
         run("tar -xzf /tmp/{} -C\
             /data/web_static/releases/{}/".format(file_nametgz, file_name))
@@ -37,5 +35,5 @@ def do_deploy(archive_path):
         run("ln -s /data/web_static/releases/{}/\
             /data/web_static/current".format(file_name))
         return True
-    except Exception as e:
+    except:
         return False
