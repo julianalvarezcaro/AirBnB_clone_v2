@@ -13,7 +13,7 @@ data = storage.all(State)
 
 
 @app.teardown_appcontext
-def teardown_func(exception):
+def teardown_func(self):
     """Will excecute after each request
     Closes current sqlalchemy session
     """
