@@ -23,6 +23,8 @@ class State(BaseModel, Base):
     else:
         @property
         def cities(self):
+            """Returns a list of City objects from the current state
+            """
             _cities_list = []
             cities_dict = models.storage.all(City)
             for city_id, obj in cities_dict.items():

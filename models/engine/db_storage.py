@@ -37,15 +37,24 @@ class DBStorage:
         object_cls = {}
         query_sum = []
         if cls:
-            quer = self.__session.query(eval(cls)).all()
+            if cls is str:
+                quer = self.__session.query(eval(cls)).all()
+            else:
+                quer = self.__session.query(cls).all()
             query_sum.extend(quer)
         else:
             classes = ['State', 'City', 'User', 'Place', 'Review']
             for clas in classes:
-                quer = self.__session.query(eval(clas)).all()
+                if cls is str:
+                    quer = self.__session.query(eval(cls)).all()
+                else:
+                    quer = self.__session.query(cls).all()
                 query_sum.extend(quer)
         for instance in query_sum:
-            key = cls + '.' + instance.id
+            if cls is str:
+                key = cls + '.' + instance.id
+            else:
+                key = cls.__name__ + '.' + instance.id
             object_cls[key] = instance
         return object_cls
 
