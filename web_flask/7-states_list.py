@@ -9,8 +9,6 @@ from models.state import State
 app = Flask(__name__)
 app.url_map.strict_slashes = False
 
-data = storage.all(State)
-
 
 @app.teardown_appcontext
 def teardown_func(self):
@@ -24,6 +22,7 @@ def teardown_func(self):
 def list_states():
     """Returns Hello HBNB
     """
+    data = storage.all(State)
     return render_template('7-states_list.html', states=data)
 
 
